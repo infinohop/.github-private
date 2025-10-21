@@ -66,6 +66,8 @@ CREATE TABLE products (
     FOREIGN KEY (vendorId) REFERENCES vendors(vendorId)
 );
 
+To-do
+- add image col
 
 ----------------------------------------------------------------------
 Orders table

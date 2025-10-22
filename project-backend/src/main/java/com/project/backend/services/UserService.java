@@ -1,18 +1,15 @@
 package com.project.backend.services;
 
-import com.project.backend.daos.UserRepository;
 import com.project.backend.entities.User;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
 
-@Service
-public class UserService {
-    @Autowired
-    private UserRepository userRepository;
+public interface UserService{
 
-    public List<User> getAllUsers(){
-        return userRepository.findAll();
-    }
+    public List<User> getAllUsers();
+
+    public User getUserById(int uid);
+
+    public User saveUser(User user);
+
+    void updateUserName(String firstName, String lastName,int userId);
 }

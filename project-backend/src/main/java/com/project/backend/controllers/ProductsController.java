@@ -3,7 +3,6 @@ package com.project.backend.controllers;
 import com.project.backend.dtos.ProductReqDTO;
 import com.project.backend.services.ProductsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.origin.TextResourceOrigin;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

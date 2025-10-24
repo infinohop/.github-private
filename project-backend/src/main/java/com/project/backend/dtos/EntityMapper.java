@@ -1,12 +1,9 @@
 package com.project.backend.dtos;
 
+import com.project.backend.entities.*;
 import com.project.backend.repository.CategoryRepository;
 import com.project.backend.repository.SubCategoryRepository;
 import com.project.backend.repository.VendorRepository;
-import com.project.backend.entities.Category;
-import com.project.backend.entities.Products;
-import com.project.backend.entities.SubCategory;
-import com.project.backend.entities.Vendor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -95,6 +92,31 @@ public class EntityMapper {
             subCategoryRespDTOList.add(subCategoryRespDTO);
         }
         return subCategoryRespDTOList;
+    }
+
+    public OrderRespDTO newOrderToOrderRespDTO(Order order) {
+        OrderRespDTO orderRespDTO = new OrderRespDTO();
+        orderRespDTO.setOrderId(order.getOrderId());
+        orderRespDTO.setUserId(order.getUser().getUserId());
+        orderRespDTO.setOrderStatus(order.getOrderStatus());
+        orderRespDTO.setPaymentStatus(order.getPaymentStatus());
+        orderRespDTO.setTotalAmount(order.getTotalAmount());
+        orderRespDTO.setDeliveryAddress(order.getDeliveryAddress());
+
+        List<OrderDetails> orderDetails = order.getOrderDetails();
+        List<OrderDetailsRespDTO> orderDetailsRespDTOList = new ArrayList<>();
+        for(OrderDetails orderDetail : orderDetails) {
+            OrderDetailsRespDTO orderDetailsRespDTO = new OrderDetailsRespDTO();
+            orderDetailsRespDTO.setOrderId(orderDetail.getOrder().getOrderId());
+            orderDetailsRespDTO.setOrderDetailId(orderDetail.getOrderDetailId());
+            orderDetailsRespDTO.setProductId(orderDetail.getProduct().getProductId());
+            orderDetailsRespDTO.setPrice(orderDetail.getPrice());
+            orderDetailsRespDTO.setQuantity(orderDetail.getQuantity());
+            orderDetailsRespDTO.setSubtotal(orderDetail.getSubtotal());
+            orderDetailsRespDTOList.add(orderDetailsRespDTO);
+        }
+        orderRespDTO.setOrderDetails(orderDetailsRespDTOList);
+        return orderRespDTO;
     }
 
 }

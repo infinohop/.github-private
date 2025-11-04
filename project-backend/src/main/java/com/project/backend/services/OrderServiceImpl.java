@@ -2,6 +2,7 @@ package com.project.backend.services;
 
 import com.project.backend.dtos.EntityMapper;
 import com.project.backend.dtos.OrderDetailsReqDTO;
+import com.project.backend.dtos.OrderDetailsRespDTO;
 import com.project.backend.dtos.OrderRespDTO;
 import com.project.backend.entities.Order;
 import com.project.backend.entities.OrderDetails;
@@ -83,4 +84,20 @@ public class OrderServiceImpl implements OrderService {
 
         return mapper.newOrderToOrderRespDTO(order);
     }
+
+    @Override
+    public List<OrderDetailsRespDTO> findOrderDetailsByOrderId(int orderId) {
+        Order order = orderRepository.findById(orderId).get();
+        List<OrderDetails> orderDetails = order.getOrderDetails();
+        return mapper.getAllOrderDetailsRespDto(orderDetails);
+    }
+
+    @Override
+    public OrderDetailsRespDTO findOrderDetailByOrderDetailId(int orderDetailId) {
+        OrderDetails orderDetail = orderDetailsRepository.findById(orderDetailId).get();
+        return mapper.getOrderDetailByOrderDetailId(orderDetail);
+
+    }
+
+
 }

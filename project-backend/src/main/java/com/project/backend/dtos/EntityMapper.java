@@ -104,6 +104,23 @@ public class EntityMapper {
         orderRespDTO.setDeliveryAddress(order.getDeliveryAddress());
 
         List<OrderDetails> orderDetails = order.getOrderDetails();
+        List<OrderDetailsRespDTO> orderDetailsRespDTOList = getAllOrderDetailsRespDto(orderDetails);
+//        orderDetailsRespDTOList = new ArrayList<>();
+//        for(OrderDetails orderDetail : orderDetails) {
+//            OrderDetailsRespDTO orderDetailsRespDTO = new OrderDetailsRespDTO();
+//            orderDetailsRespDTO.setOrderId(orderDetail.getOrder().getOrderId());
+//            orderDetailsRespDTO.setOrderDetailId(orderDetail.getOrderDetailId());
+//            orderDetailsRespDTO.setProductId(orderDetail.getProduct().getProductId());
+//            orderDetailsRespDTO.setPrice(orderDetail.getPrice());
+//            orderDetailsRespDTO.setQuantity(orderDetail.getQuantity());
+//            orderDetailsRespDTO.setSubtotal(orderDetail.getSubtotal());
+//            orderDetailsRespDTOList.add(orderDetailsRespDTO);
+//        }
+        orderRespDTO.setOrderDetails(orderDetailsRespDTOList);
+        return orderRespDTO;
+    }
+
+    public List<OrderDetailsRespDTO> getAllOrderDetailsRespDto(List<OrderDetails> orderDetails) {
         List<OrderDetailsRespDTO> orderDetailsRespDTOList = new ArrayList<>();
         for(OrderDetails orderDetail : orderDetails) {
             OrderDetailsRespDTO orderDetailsRespDTO = new OrderDetailsRespDTO();
@@ -115,8 +132,17 @@ public class EntityMapper {
             orderDetailsRespDTO.setSubtotal(orderDetail.getSubtotal());
             orderDetailsRespDTOList.add(orderDetailsRespDTO);
         }
-        orderRespDTO.setOrderDetails(orderDetailsRespDTOList);
-        return orderRespDTO;
+        return orderDetailsRespDTOList;
     }
 
+    public OrderDetailsRespDTO getOrderDetailByOrderDetailId(OrderDetails orderDetail) {
+        OrderDetailsRespDTO orderDetailsRespDTO = new OrderDetailsRespDTO();
+        orderDetailsRespDTO.setOrderId(orderDetail.getOrder().getOrderId());
+        orderDetailsRespDTO.setOrderDetailId(orderDetail.getOrderDetailId());
+        orderDetailsRespDTO.setProductId(orderDetail.getProduct().getProductId());
+        orderDetailsRespDTO.setPrice(orderDetail.getPrice());
+        orderDetailsRespDTO.setQuantity(orderDetail.getQuantity());
+        orderDetailsRespDTO.setSubtotal(orderDetail.getSubtotal());
+        return orderDetailsRespDTO;
+    }
 }

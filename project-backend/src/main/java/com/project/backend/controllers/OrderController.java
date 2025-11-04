@@ -31,5 +31,15 @@ public class OrderController {
         return ResponseEntity.ok(orderService.placeOrder(uid,orderDetailsReqDTOs));
     }
 
+    @GetMapping("/details/{orderId}")
+    public ResponseEntity<?> findOrderDetailsByOrderId(@PathVariable("orderId") int orderId) {
+        return ResponseEntity.ok(orderService.findOrderDetailsByOrderId(orderId));
+    }
+
+    @GetMapping("/singledetail/{orderDetailsId}")
+    public ResponseEntity<?> findOrderDetailByOrderDetailId(@PathVariable("orderDetailsId") int orderDetailsId) {
+        return ResponseEntity.ok(orderService.findOrderDetailByOrderDetailId(orderDetailsId));
+    }
+
 
 }

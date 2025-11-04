@@ -9,16 +9,16 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "users")
-public class User {
+@Table(name = "vendors")
+public class Vendor {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int userId;
-    private String firstName;
-    private String lastName;
+    private int vendorId;
+    private String vendorName;
     private String email;
     private String mobile;
-    private String gender;
+    private String subscriptionStatus;
+    private double commissionRate;
     private String password;
-    private String address;
 }
